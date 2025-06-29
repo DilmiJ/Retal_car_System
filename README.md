@@ -90,7 +90,7 @@ PORT=5000
 NODE_ENV=development
 
 # MongoDB Configuration
-MONGODB_URI=mongodb+srv://Dilmi:2001dilmi@cluster0.2tc4t.mongodb.net/carhub-database?retryWrites=true&w=majority&appName=Cluster0
+MONGODB_URI=
 
 # JWT Configuration
 JWT_SECRET=20012002dilmi
