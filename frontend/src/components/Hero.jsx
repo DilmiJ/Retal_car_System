@@ -8,43 +8,42 @@ const Hero = () => {
   const [currentBanner, setCurrentBanner] = useState(0);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  // Banner data with information
+  // Banner data with 5 car images
   const banners = [
     {
-      image: '/banner1.jpg',
+      image: '/banners/1.jpg',
       title: 'Luxury Sports Cars',
       description: 'Experience the thrill of premium sports cars with unmatched performance and style.',
-      highlight: 'Starting from $45,000'
+      highlight: 'Starting from $45,000',
+      category: 'Executive Class'
     },
     {
-      image: '/banner2.jpg',
-      title: 'Family SUVs',
-      description: 'Spacious and safe SUVs perfect for family adventures and daily commutes.',
-      highlight: 'Best Safety Ratings'
+      image: '/banners/2.jpg',
+      title: 'Premium SUVs',
+      description: 'Spacious luxury SUVs perfect for family adventures with premium comfort.',
+      highlight: 'Starting from $55,000',
+      category: 'Family Class'
     },
     {
-      image: '/banner3.jpg',
+      image: '/banners/3.jpg',
       title: 'Electric Vehicles',
-      description: 'Go green with our eco-friendly electric cars featuring cutting-edge technology.',
-      highlight: 'Zero Emissions'
+      description: 'Eco-friendly cars with cutting-edge technology and zero emissions.',
+      highlight: 'Starting from $40,000',
+      category: 'Eco Class'
     },
     {
-      image: '/banner4.jpg',
-      title: 'Classic Collection',
-      description: 'Discover timeless classics and vintage cars that never go out of style.',
-      highlight: 'Collector\'s Choice'
-    },
-    {
-      image: '/banner5.jpg',
-      title: 'Compact Cars',
-      description: 'Efficient and affordable compact cars perfect for city driving and parking.',
-      highlight: 'Best Fuel Economy'
-    },
-    {
-      image: '/banner6.jpg',
+      image: '/banners/4.jpg',
       title: 'Luxury Sedans',
       description: 'Premium sedans offering comfort, elegance, and advanced features.',
-      highlight: 'Executive Class'
+      highlight: 'Starting from $38,000',
+      category: 'Executive Class'
+    },
+    {
+      image: '/banners/5.jpg',
+      title: 'Performance Cars',
+      description: 'High-performance vehicles designed for speed and precision driving.',
+      highlight: 'Starting from $65,000',
+      category: 'Sport Class'
     }
   ];
 
@@ -213,15 +212,18 @@ const Hero = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                       >
-                        <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-3">
-                          {banners[currentBanner].highlight}
+                        <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold inline-block mb-2">
+                          {banners[currentBanner].category}
                         </div>
                         <h3 className="text-2xl sm:text-3xl font-bold mb-2">
                           {banners[currentBanner].title}
                         </h3>
-                        <p className="text-gray-200 text-sm sm:text-base max-w-md">
+                        <p className="text-gray-200 text-sm sm:text-base max-w-md mb-2">
                           {banners[currentBanner].description}
                         </p>
+                        <div className="text-yellow-400 font-bold text-lg">
+                          {banners[currentBanner].highlight}
+                        </div>
                       </motion.div>
                     </div>
                   </motion.div>

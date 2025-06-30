@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -93,92 +93,54 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex overflow-hidden">
-      {/* Left Side - Video/Image */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-600/90 to-blue-800/90 z-10 animate-pulse"></div>
-        <video
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source src="/login viedio.mov" type="video/mp4" />
-          <source src="/login viedio.mov" type="video/quicktime" />
-          {/* Fallback image if video doesn't load */}
-          <img
-            src="/login.jpeg"
-            alt="CarHub Login"
-            className="w-full h-full object-cover"
-          />
-        </video>
+    <div className="h-screen relative overflow-hidden bg-gradient-to-br from-blue-900 to-purple-900">
+      {/* Full Page Video Background */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source src="/videos/first.mp4" type="video/mp4" />
+        {/* Fallback image if video doesn't load */}
+        <img
+          src="/images/register-fallback.jpg"
+          alt="CarHub Register"
+          className="w-full h-full object-cover"
+        />
+      </video>
 
-        {/* Overlay Content */}
-        <div className="relative z-20 flex flex-col justify-center items-center text-white p-12 animate-fade-in-up">
-          <div className="text-center">
-            <Link to="/" className="inline-flex items-center text-4xl font-bold mb-6 hover:scale-110 transition-transform duration-300">
-              <Car className="w-10 h-10 mr-3 animate-bounce" />
+      {/* Registration Form Overlay */}
+      <div className="relative z-10 h-screen flex items-center justify-center p-2">
+        <div className="max-w-lg w-full animate-fade-in-up delay-200">
+          {/* Header */}
+          <div className="text-center animate-slide-in-down mb-4">
+            <Link to="/" className="inline-flex items-center text-2xl font-bold text-white mb-3 hover:scale-110 transition-transform duration-300">
+              <Car className="w-6 h-6 mr-2 animate-bounce" />
               CarHub
             </Link>
-            <h1 className="text-4xl font-bold mb-4 animate-slide-in-left">
-              Welcome to CarHub
-            </h1>
-            <p className="text-xl text-gray-200 mb-8 max-w-md animate-slide-in-right">
-              Your trusted platform for buying, selling, and renting premium cars
-            </p>
-            <div className="flex items-center justify-center space-x-8 text-sm animate-fade-in-up delay-300">
-              <div className="flex items-center hover:scale-110 transition-transform duration-200">
-                <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-                <span>Verified Dealers</span>
-              </div>
-              <div className="flex items-center hover:scale-110 transition-transform duration-200">
-                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse delay-100"></div>
-                <span>Secure Payments</span>
-              </div>
-              <div className="flex items-center hover:scale-110 transition-transform duration-200">
-                <div className="w-2 h-2 bg-yellow-400 rounded-full mr-2 animate-pulse delay-200"></div>
-                <span>24/7 Support</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Right Side - Registration Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-2 lg:p-3 min-h-screen overflow-hidden">
-        <div className="max-w-xs w-full space-y-2 animate-fade-in-up delay-200">
-          {/* Mobile Header */}
-          <div className="text-center lg:hidden animate-slide-in-down">
-            <Link to="/" className="inline-flex items-center text-3xl font-bold text-primary-600 mb-4 hover:scale-110 transition-transform duration-300">
-              <Car className="w-8 h-8 mr-2 animate-bounce" />
-              CarHub
-            </Link>
-          </div>
-
-          {/* Form Header */}
-          <div className="text-center animate-slide-in-down delay-100">
-            <h2 className="text-xl font-bold text-gray-900 mb-0.5 bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
-              Create Account
+            <h2 className="text-2xl font-bold text-white mb-2 animate-slide-in-left">
+              Join CarHub
             </h2>
-            <p className="text-xs text-gray-600">
-              Join thousands of car enthusiasts
+            <p className="text-sm text-white/90 mb-4 animate-slide-in-right">
+              Your trusted platform for buying, selling, and renting premium cars
             </p>
           </div>
 
           {/* Register Form */}
-          <div className="bg-white rounded-xl shadow-xl p-3 lg:p-4 border border-gray-100 hover:shadow-2xl transition-all duration-300 animate-scale-in delay-300">
+          <div className="bg-white rounded-2xl shadow-2xl p-4 border border-gray-200 hover:shadow-3xl transition-all duration-300 animate-scale-in delay-300 max-h-[calc(100vh-8rem)] overflow-y-auto">
           <form className="space-y-3" onSubmit={handleSubmit(onSubmit)}>
             {/* Role Selection */}
             <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 I want to join as:
               </label>
               <div className="grid grid-cols-3 gap-2">
                 <label className={`relative flex flex-col items-center p-2 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
                   selectedRole === 'user'
-                    ? 'border-blue-500 bg-blue-50 shadow-md transform scale-[1.02]'
-                    : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
+                    ? 'border-primary-500 bg-primary-50 shadow-md transform scale-[1.02]'
+                    : 'border-gray-300 hover:border-gray-400 hover:shadow-sm bg-white'
                 }`}>
                   <input
                     {...register('role')}
@@ -187,25 +149,25 @@ const Register = () => {
                     className="sr-only"
                   />
                   <div className={`w-6 h-6 rounded-full flex items-center justify-center mb-1 ${
-                    selectedRole === 'user' ? 'bg-blue-100' : 'bg-gray-100'
+                    selectedRole === 'user' ? 'bg-primary-100' : 'bg-gray-100'
                   }`}>
-                    <User className={`w-3 h-3 ${selectedRole === 'user' ? 'text-blue-600' : 'text-gray-400'}`} />
+                    <User className={`w-3 h-3 ${selectedRole === 'user' ? 'text-primary-600' : 'text-gray-600'}`} />
                   </div>
                   <div className="text-center">
-                    <div className={`text-xs font-semibold ${selectedRole === 'user' ? 'text-blue-900' : 'text-gray-900'}`}>
+                    <div className={`text-xs font-semibold ${selectedRole === 'user' ? 'text-primary-700' : 'text-gray-700'}`}>
                       User
                     </div>
                     <div className="text-xs text-gray-500">Buy cars</div>
                   </div>
                   {selectedRole === 'user' && (
-                    <div className="absolute top-1 right-1 w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="absolute top-1 right-1 w-2 h-2 bg-primary-600 rounded-full"></div>
                   )}
                 </label>
 
                 <label className={`relative flex flex-col items-center p-2 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
                   selectedRole === 'dealer'
                     ? 'border-blue-500 bg-blue-50 shadow-md transform scale-[1.02]'
-                    : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
+                    : 'border-gray-300 hover:border-gray-400 hover:shadow-sm bg-white'
                 }`}>
                   <input
                     {...register('role')}
@@ -216,23 +178,23 @@ const Register = () => {
                   <div className={`w-6 h-6 rounded-full flex items-center justify-center mb-1 ${
                     selectedRole === 'dealer' ? 'bg-blue-100' : 'bg-gray-100'
                   }`}>
-                    <UserCheck className={`w-3 h-3 ${selectedRole === 'dealer' ? 'text-blue-600' : 'text-gray-400'}`} />
+                    <UserCheck className={`w-3 h-3 ${selectedRole === 'dealer' ? 'text-blue-600' : 'text-gray-600'}`} />
                   </div>
                   <div className="text-center">
-                    <div className={`text-xs font-semibold ${selectedRole === 'dealer' ? 'text-blue-900' : 'text-gray-900'}`}>
+                    <div className={`text-xs font-semibold ${selectedRole === 'dealer' ? 'text-blue-700' : 'text-gray-700'}`}>
                       Dealer
                     </div>
                     <div className="text-xs text-gray-500">Sell cars</div>
                   </div>
                   {selectedRole === 'dealer' && (
-                    <div className="absolute top-1 right-1 w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="absolute top-1 right-1 w-2 h-2 bg-blue-600 rounded-full"></div>
                   )}
                 </label>
 
                 <label className={`relative flex flex-col items-center p-2 border-2 rounded-lg cursor-pointer transition-all duration-200 ${
                   selectedRole === 'admin'
-                    ? 'border-blue-500 bg-blue-50 shadow-md transform scale-[1.02]'
-                    : 'border-gray-200 hover:border-gray-300 hover:shadow-sm'
+                    ? 'border-purple-500 bg-purple-50 shadow-md transform scale-[1.02]'
+                    : 'border-gray-300 hover:border-gray-400 hover:shadow-sm bg-white'
                 }`}>
                   <input
                     {...register('role')}
@@ -241,18 +203,18 @@ const Register = () => {
                     className="sr-only"
                   />
                   <div className={`w-6 h-6 rounded-full flex items-center justify-center mb-1 ${
-                    selectedRole === 'admin' ? 'bg-blue-100' : 'bg-gray-100'
+                    selectedRole === 'admin' ? 'bg-purple-100' : 'bg-gray-100'
                   }`}>
-                    <Shield className={`w-3 h-3 ${selectedRole === 'admin' ? 'text-blue-600' : 'text-gray-400'}`} />
+                    <Shield className={`w-3 h-3 ${selectedRole === 'admin' ? 'text-purple-600' : 'text-gray-600'}`} />
                   </div>
                   <div className="text-center">
-                    <div className={`text-xs font-semibold ${selectedRole === 'admin' ? 'text-blue-900' : 'text-gray-900'}`}>
+                    <div className={`text-xs font-semibold ${selectedRole === 'admin' ? 'text-purple-700' : 'text-gray-700'}`}>
                       Admin
                     </div>
                     <div className="text-xs text-gray-500">Manage</div>
                   </div>
                   {selectedRole === 'admin' && (
-                    <div className="absolute top-1 right-1 w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <div className="absolute top-1 right-1 w-2 h-2 bg-purple-600 rounded-full"></div>
                   )}
                 </label>
               </div>
@@ -262,98 +224,96 @@ const Register = () => {
             </div>
 
             {/* Name Fields */}
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-3">
               <div>
-                <label htmlFor="firstName" className="block text-xs font-medium text-gray-700 mb-0.5">
+                <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">
                   First Name
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <User className="h-5 w-5 text-gray-400" />
+                    <User className="h-4 w-4 text-gray-400" />
                   </div>
                   <input
                     {...register('firstName')}
                     type="text"
                     autoComplete="given-name"
-                    className={`block w-full pl-8 pr-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm ${
-                      errors.firstName ? 'border-red-300' : 'border-gray-300'
+                    className={`block w-full pl-9 pr-3 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-gray-900 placeholder-gray-500 text-sm ${
+                      errors.firstName ? 'border-red-300' : ''
                     }`}
                     placeholder="First name"
                   />
                 </div>
                 {errors.firstName && (
-                  <p className="mt-1 text-sm text-red-600">{errors.firstName.message}</p>
+                  <p className="mt-1 text-xs text-red-600">{errors.firstName.message}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">
                   Last Name
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <User className="h-5 w-5 text-gray-400" />
+                    <User className="h-4 w-4 text-gray-400" />
                   </div>
                   <input
                     {...register('lastName')}
                     type="text"
                     autoComplete="family-name"
-                    className={`block w-full pl-10 pr-3 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
-                      errors.lastName ? 'border-red-300' : 'border-gray-300'
+                    className={`block w-full pl-9 pr-3 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-gray-900 placeholder-gray-500 text-sm ${
+                      errors.lastName ? 'border-red-300' : ''
                     }`}
                     placeholder="Last name"
                   />
                 </div>
                 {errors.lastName && (
-                  <p className="mt-1 text-sm text-red-600">{errors.lastName.message}</p>
+                  <p className="mt-1 text-xs text-red-600">{errors.lastName.message}</p>
                 )}
               </div>
             </div>
 
             {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block text-xs font-medium text-gray-700 mb-0.5">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                 Email Address
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Mail className="h-4 w-4 text-gray-400" />
                 </div>
                 <input
                   {...register('email')}
                   type="email"
                   autoComplete="email"
-                  className={`block w-full pl-8 pr-2 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm ${
-                    errors.email ? 'border-red-300' : 'border-gray-300'
+                  className={`block w-full pl-9 pr-3 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-gray-900 placeholder-gray-500 text-sm ${
+                    errors.email ? 'border-red-300' : ''
                   }`}
                   placeholder="Enter your email"
                 />
               </div>
               {errors.email && (
-                <p className="mt-0.5 text-xs text-red-600">{errors.email.message}</p>
+                <p className="mt-1 text-xs text-red-600">{errors.email.message}</p>
               )}
             </div>
 
-
-
             {/* Password Fields */}
-            <div className="grid grid-cols-1 gap-2">
+            <div className="grid grid-cols-2 gap-3">
               <div>
-                <label htmlFor="password" className="block text-xs font-medium text-gray-700 mb-0.5">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
                   Password
                 </label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                     <Lock className="h-4 w-4 text-gray-400" />
                   </div>
                   <input
                     {...register('password')}
                     type={showPassword ? 'text' : 'password'}
                     autoComplete="new-password"
-                    className={`block w-full pl-8 pr-8 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm ${
-                      errors.password ? 'border-red-300' : 'border-gray-300'
+                    className={`block w-full pl-9 pr-10 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-gray-900 placeholder-gray-500 text-sm ${
+                      errors.password ? 'border-red-300' : ''
                     }`}
-                    placeholder="Create a password"
+                    placeholder="Password"
                   />
                   <button
                     type="button"
@@ -368,62 +328,62 @@ const Register = () => {
                   </button>
                 </div>
                 {errors.password && (
-                  <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
+                  <p className="mt-1 text-xs text-red-600">{errors.password.message}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
                   Confirm Password
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <Lock className="h-5 w-5 text-gray-400" />
+                    <Lock className="h-4 w-4 text-gray-400" />
                   </div>
                   <input
                     {...register('confirmPassword')}
                     type={showConfirmPassword ? 'text' : 'password'}
                     autoComplete="new-password"
-                    className={`block w-full pl-10 pr-10 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
-                      errors.confirmPassword ? 'border-red-300' : 'border-gray-300'
+                    className={`block w-full pl-9 pr-10 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors text-gray-900 placeholder-gray-500 text-sm ${
+                      errors.confirmPassword ? 'border-red-300' : ''
                     }`}
-                    placeholder="Confirm your password"
+                    placeholder="Confirm"
                   />
                   <button
                     type="button"
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                    className="absolute inset-y-0 right-0 pr-2 flex items-center"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   >
                     {showConfirmPassword ? (
-                      <EyeOff className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                      <EyeOff className="h-4 w-4 text-gray-400 hover:text-gray-600" />
                     ) : (
-                      <Eye className="h-5 w-5 text-gray-400 hover:text-gray-600" />
+                      <Eye className="h-4 w-4 text-gray-400 hover:text-gray-600" />
                     )}
                   </button>
                 </div>
                 {errors.confirmPassword && (
-                  <p className="mt-1 text-sm text-red-600">{errors.confirmPassword.message}</p>
+                  <p className="mt-1 text-xs text-red-600">{errors.confirmPassword.message}</p>
                 )}
               </div>
             </div>
 
             {/* Terms and Conditions */}
             <div className="flex items-start">
-              <div className="flex items-center h-5">
+              <div className="flex items-center h-4">
                 <input
                   {...register('terms')}
                   type="checkbox"
-                  className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+                  className="h-3 w-3 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
                 />
               </div>
               <div className="ml-2 text-xs">
                 <label htmlFor="terms" className="text-gray-700">
                   I agree to the{' '}
-                  <Link to="/terms" className="text-blue-600 hover:text-blue-500 font-medium">
-                    Terms and Conditions
+                  <Link to="/terms" className="text-primary-600 hover:text-primary-500 font-medium underline">
+                    Terms
                   </Link>{' '}
                   and{' '}
-                  <Link to="/privacy" className="text-blue-600 hover:text-blue-500 font-medium">
+                  <Link to="/privacy" className="text-primary-600 hover:text-primary-500 font-medium underline">
                     Privacy Policy
                   </Link>
                 </label>
@@ -438,7 +398,7 @@ const Register = () => {
               <button
                 type="submit"
                 disabled={isSubmitting || isLoading}
-                className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-lg text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 hover:shadow-xl active:scale-95 group text-sm"
+                className="w-full flex justify-center items-center py-2.5 px-4 border border-transparent rounded-lg shadow-lg text-white bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 focus:outline-none focus:ring-2 focus:ring-primary-500 font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 hover:shadow-xl active:scale-95 group text-sm"
               >
                 {isSubmitting || isLoading ? (
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -459,13 +419,13 @@ const Register = () => {
                 <div className="w-full border-t border-gray-300" />
               </div>
               <div className="relative flex justify-center text-xs">
-                <span className="px-2 bg-white text-gray-500">Or sign up with</span>
+                <span className="px-2 bg-white text-gray-500 rounded">Or</span>
               </div>
             </div>
           </div>
 
           {/* OAuth Buttons */}
-          <div className="mt-3 grid grid-cols-2 gap-2">
+          <div className="mt-2 grid grid-cols-2 gap-2">
             <button
               onClick={handleGoogleLogin}
               className="w-full inline-flex justify-center py-2 px-3 border border-gray-300 rounded-lg shadow-sm bg-white text-xs font-medium text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200"
@@ -488,14 +448,14 @@ const Register = () => {
                   d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                 />
               </svg>
-              <span className="ml-2">Google</span>
+              <span className="ml-1">Google</span>
             </button>
 
             <button
               onClick={handleFacebookLogin}
               className="w-full inline-flex justify-center py-2 px-3 border border-gray-300 rounded-lg shadow-sm bg-white text-xs font-medium text-gray-700 hover:bg-gray-50 hover:border-gray-400 transition-all duration-200"
             >
-              <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
               </svg>
               <span className="ml-1">Facebook</span>
@@ -503,19 +463,16 @@ const Register = () => {
           </div>
 
           {/* Sign In Link */}
-          <div className="mt-2 text-center animate-fade-in-up delay-700">
-            <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg p-2 border border-gray-200 hover:border-blue-300 transition-all duration-300 hover:shadow-md">
-              <p className="text-xs text-gray-600 mb-2">
-                Already have an account?
-              </p>
+          <div className="mt-3 text-center">
+            <p className="text-xs text-gray-600">
+              Already have an account?{' '}
               <Link
                 to="/login"
-                className="inline-flex items-center justify-center w-full py-2 px-3 border border-blue-600 rounded-lg text-xs font-medium text-blue-600 bg-white hover:bg-blue-50 hover:border-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg group"
+                className="text-primary-600 hover:text-primary-500 font-medium underline"
               >
-                <span className="mr-1">Sign In</span>
-                <ArrowRight className="h-3 w-3 transition-transform duration-200 group-hover:translate-x-1" />
+                Sign In
               </Link>
-            </div>
+            </p>
           </div>
         </div>
         </div>

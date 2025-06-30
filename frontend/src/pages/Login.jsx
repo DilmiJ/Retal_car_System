@@ -66,97 +66,59 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex overflow-hidden">
-      {/* Left Side - Video/Image */}
-      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-600/90 to-blue-800/90 z-10 animate-pulse"></div>
-        <video
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
-          autoPlay
-          muted
-          loop
-          playsInline
-        >
-          <source src="/login viedio.mov" type="video/mp4" />
-          <source src="/login viedio.mov" type="video/quicktime" />
-          {/* Fallback image if video doesn't load */}
-          <img
-            src="/login.jpeg"
-            alt="CarHub Login"
-            className="w-full h-full object-cover"
-          />
-        </video>
+    <div className="min-h-screen relative overflow-hidden">
+      {/* Full Page Video Background */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source src="/videos/login.mp4" type="video/mp4" />
+        {/* Fallback image if video doesn't load */}
+        <img
+          src="/images/login-fallback.jpg"
+          alt="CarHub Login"
+          className="w-full h-full object-cover"
+        />
+      </video>
 
-        {/* Overlay Content */}
-        <div className="relative z-20 flex flex-col justify-center items-center text-white p-12 animate-fade-in-up">
-          <div className="text-center">
-            <Link to="/" className="inline-flex items-center text-4xl font-bold mb-6 hover:scale-110 transition-transform duration-300">
+      {/* Login Form Overlay */}
+      <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
+        <div className="max-w-md w-full space-y-6 animate-fade-in-up delay-200">
+          {/* Header */}
+          <div className="text-center animate-slide-in-down">
+            <Link to="/" className="inline-flex items-center text-4xl font-bold text-white mb-6 hover:scale-110 transition-transform duration-300">
               <Car className="w-10 h-10 mr-3 animate-bounce" />
               CarHub
             </Link>
-            <h1 className="text-4xl font-bold mb-4 animate-slide-in-left">
-              Welcome Back
-            </h1>
-            <p className="text-xl text-gray-200 mb-8 max-w-md animate-slide-in-right">
-              Sign in to access your dashboard and manage your car listings
-            </p>
-            <div className="flex items-center justify-center space-x-8 text-sm animate-fade-in-up delay-300">
-              <div className="flex items-center hover:scale-110 transition-transform duration-200">
-                <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-                <span>Secure Login</span>
-              </div>
-              <div className="flex items-center hover:scale-110 transition-transform duration-200">
-                <div className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse delay-100"></div>
-                <span>Fast Access</span>
-              </div>
-              <div className="flex items-center hover:scale-110 transition-transform duration-200">
-                <div className="w-2 h-2 bg-yellow-400 rounded-full mr-2 animate-pulse delay-200"></div>
-                <span>24/7 Support</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Right Side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 lg:p-6 min-h-screen">
-        <div className="max-w-sm w-full space-y-4 animate-fade-in-up delay-200">
-          {/* Mobile Header */}
-          <div className="text-center lg:hidden animate-slide-in-down">
-            <Link to="/" className="inline-flex items-center text-3xl font-bold text-primary-600 mb-4 hover:scale-110 transition-transform duration-300">
-              <Car className="w-8 h-8 mr-2 animate-bounce" />
-              CarHub
-            </Link>
-          </div>
-
-          {/* Form Header */}
-          <div className="text-center animate-slide-in-down delay-100">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2 bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold text-white mb-4 animate-slide-in-left">
               Welcome Back
             </h2>
-            <p className="text-gray-600">
-              Sign in to your account
+            <p className="text-xl text-white/90 mb-8 animate-slide-in-right">
+              Sign in to access your dashboard and manage your car listings
             </p>
           </div>
 
           {/* Login Form */}
-          <div className="bg-white rounded-2xl shadow-xl p-4 lg:p-6 border border-gray-100 hover:shadow-2xl transition-all duration-300 animate-scale-in delay-300">
-            <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+          <div className="bg-white rounded-2xl shadow-2xl p-8 border border-gray-200 hover:shadow-3xl transition-all duration-300 animate-scale-in delay-300">
+            <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
               {/* Email Field */}
               <div className="animate-slide-in-left delay-400">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2 transition-colors duration-200">
                   Email Address
                 </label>
                 <div className="relative group">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none transition-colors duration-200 group-focus-within:text-primary-500">
-                    <Mail className="h-5 w-5 text-gray-400 group-focus-within:text-primary-500 transition-colors duration-200" />
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none transition-colors duration-200 group-focus-within:text-primary-600">
+                    <Mail className="h-5 w-5 text-gray-400 group-focus-within:text-primary-600 transition-colors duration-200" />
                   </div>
                   <input
                     {...register('email')}
                     type="email"
                     autoComplete="email"
-                    className={`block w-full pl-10 pr-3 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200 hover:border-gray-400 focus:scale-[1.02] ${
-                      errors.email ? 'border-red-300 animate-shake' : 'border-gray-300'
+                    className={`block w-full pl-10 pr-3 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all duration-200 hover:border-gray-400 focus:scale-[1.02] text-gray-900 placeholder-gray-500 ${
+                      errors.email ? 'border-red-300 animate-shake' : ''
                     }`}
                     placeholder="Enter your email"
                   />
@@ -179,8 +141,8 @@ const Login = () => {
                     {...register('password')}
                     type={showPassword ? 'text' : 'password'}
                     autoComplete="current-password"
-                    className={`block w-full pl-10 pr-10 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors ${
-                      errors.password ? 'border-red-300' : 'border-gray-300'
+                    className={`block w-full pl-10 pr-10 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors hover:border-gray-400 text-gray-900 placeholder-gray-500 ${
+                      errors.password ? 'border-red-300' : ''
                     }`}
                     placeholder="Enter your password"
                   />
@@ -227,7 +189,7 @@ const Login = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting || isLoading}
-                  className="w-full flex justify-center items-center py-4 px-4 border border-transparent rounded-xl shadow-lg text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 hover:shadow-xl active:scale-95 group"
+                  className="w-full flex justify-center items-center py-4 px-4 border border-transparent rounded-xl shadow-lg text-white bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 focus:outline-none focus:ring-2 focus:ring-primary-500 font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 hover:shadow-xl active:scale-95 group"
                 >
                   {isSubmitting || isLoading ? (
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -242,7 +204,7 @@ const Login = () => {
             </form>
 
             {/* Divider */}
-            <div className="mt-4">
+            <div className="mt-6">
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-300" />
@@ -292,8 +254,8 @@ const Login = () => {
             </div>
 
             {/* Sign Up Link */}
-            <div className="mt-4 text-center animate-fade-in-up delay-700">
-              <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl p-4 border border-gray-200 hover:border-primary-300 transition-all duration-300 hover:shadow-md">
+            <div className="mt-6 text-center animate-fade-in-up delay-700">
+              <div className="bg-gray-50 rounded-xl p-4 border border-gray-200 hover:border-primary-300 transition-all duration-300 hover:shadow-md">
                 <p className="text-sm text-gray-600 mb-3">
                   Don't have an account?
                 </p>

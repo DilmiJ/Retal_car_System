@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { motion } from 'framer-motion';
-import logoImage from '../assets/logo.jpeg';
+import { Car } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,13 +28,13 @@ const Navbar = () => {
             transition={{ duration: 0.2 }}
           >
             <Link to="/" className="flex items-center space-x-3">
-              <motion.img
-                src={logoImage}
-                alt="CarHub Logo"
-                className="h-10 w-10 rounded-lg object-cover"
+              <motion.div
+                className="h-10 w-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center"
                 whileHover={{ rotate: 5 }}
                 transition={{ duration: 0.3 }}
-              />
+              >
+                <Car className="h-6 w-6 text-white" />
+              </motion.div>
               <motion.span
                 className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent"
                 initial={{ opacity: 0, x: -20 }}

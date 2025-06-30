@@ -1,12 +1,33 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Play, Pause, Volume2, VolumeX, Maximize2 } from 'lucide-react';
 
 const VideoShowcase = () => {
+  const navigate = useNavigate();
   const videoRef = useRef();
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true); // Auto-play enabled
   const [isMuted, setIsMuted] = useState(true);
   const [showControls, setShowControls] = useState(false);
+
+  // Auto-play video when component mounts
+  useEffect(() => {
+    const playVideo = async () => {
+      if (videoRef.current) {
+        try {
+          await videoRef.current.play();
+          setIsPlaying(true);
+        } catch (error) {
+          console.log('Auto-play failed:', error);
+          setIsPlaying(false);
+        }
+      }
+    };
+
+    // Small delay to ensure video element is ready
+    const timer = setTimeout(playVideo, 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const togglePlayback = () => {
     if (videoRef.current) {
@@ -95,9 +116,9 @@ const VideoShowcase = () => {
               muted={isMuted}
               loop
               playsInline
-              poster="/api/placeholder/1200/675"
+              autoPlay
             >
-              <source src="/home.mp4" type="video/mp4" />
+              <source src="/videos/first.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
 
@@ -195,6 +216,7 @@ const VideoShowcase = () => {
           viewport={{ once: true }}
         >
           <motion.button
+            onClick={() => navigate('/cars')}
             className="bg-gradient-to-r from-primary-600 to-blue-600 hover:from-primary-700 hover:to-blue-700 text-white px-8 py-4 rounded-2xl font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
